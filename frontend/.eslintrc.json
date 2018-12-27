@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "import",
+    "react",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "react/display-name": 0,
+    "no-confusing-arrow": ["error", {
+      "allowParens": true
+    }],
+    "arrow-body-style": 1,
+    "arrow-parens": 0,
+    "operator-linebreak": 0,
+    "linebreak-style": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/anchor-is-valid": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "config/webpack/development.js"
+      }
+    }
+  }
+}

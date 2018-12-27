@@ -1,0 +1,134 @@
+type User {
+  id: ID!
+  email: String
+  fullName: String
+  username: String!
+  avatar: String!
+  createdAt: String!
+  updatedAt: String!
+  rank: Int
+  medals: [Int]
+  contests: Int
+  bestContestRank: Int
+  address: String
+  job: Job
+}
+
+type Job {
+  title: String!
+  company: String!
+}
+
+type Tag {
+  id: ID
+  name: String
+}
+
+# type Contest {
+#   id: ID
+#   name: String!
+#   overview: String!
+#   description: String!
+#   fullDescription: String!
+#   start: String
+#   end: String
+#   tags: [Tag]
+#   avatar: String
+#   company: String
+#   prize: Int
+#   teams: TeamList
+# }
+
+type Contest {
+  id: ID
+  title: String!
+  subtitle: String
+  updatedAt: String
+  status: String
+  numTeams: Int
+  numSubmissions: Int
+  description: String
+  fullDescription: String
+  evaluation: String
+  prizes: String
+  timeline: String
+  weight: Int
+  teams(skip: Int, take: Int): TeamList!
+  myTeam: Team
+  data: Data
+}
+
+type Data {
+  name: String!
+  link: String!
+}
+
+type TeamList {
+  total: Int
+  items: [Team]
+}
+
+type Team {
+  id: ID
+  name: String!
+  leader: ID
+  members: [TeamMember]
+  publicScore: Float
+  privateScore: Float
+  change: Int
+  numSubmissions: Int
+  lastSubmissionAt: String
+}
+
+type TeamMember {
+  id: ID
+  username: String
+  avatar: String
+  user: User!
+}
+
+type Submission {
+  file: String!
+  comment: String
+}
+
+type S3PresignedPost {
+  url: String!
+  fields: String!
+}
+
+type Query {
+  contests(skip: Int, take: Int): [Contest]
+  contest(id: ID!): Contest
+  users(skip: Int!, take: Int): [User]
+  user(username: String!): User!
+  me: User
+}
+
+type PayloadError {
+  message: String
+  error: String
+}
+
+type LoginPayload {
+  user: User
+  error: PayloadError
+}
+
+type JoinContestResponse {
+  team: Team
+  message: String
+  error: String
+}
+
+type SubmissionPayload {
+  s3: S3PresignedPost
+  error: PayloadError
+}
+
+type Mutation {
+  login(email: String, password: String): LoginPayload
+  register(username:String!, email: String!, password: String!): LoginPayload
+  joinContest(contestId: ID!, teamName: String): JoinContestResponse
+  createSubmission(contestId: ID!, note: String): SubmissionPayload
+}

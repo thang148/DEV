@@ -1,0 +1,22 @@
+{
+  "name": "aivivn-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "FLASK_ENV=test pytest -v --cov aivivn_backend --cov leaderboard_score --cov-report term-missing --cov-report html --cov-report term:skip-covered && open htmlcov/index.html",
+    "test-w": "FLASK_ENV=test ptw -v",
+    "lint": "flake8 aivivn_backend tests leaderboard_score",
+    "start:dev": "FLASK_APP=aivivn_backend/app.py FLASK_ENV=development flask run",
+    "postinstall": "pip install -r requirements.txt",
+    "deploy:staging": "sls deploy --stage staging && sls s3deploy --stage staging",
+    "deploy:prod": "sls deploy --stage production && sls s3deploy --stage production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless-plugin-existing-s3": "^2.2.2"
+  },
+  "devDependencies": {
+    "serverless-python-requirements": "^4.2.4",
+    "serverless-wsgi": "^1.5.1"
+  }
+}

@@ -1,0 +1,15 @@
+webargs==4.1.0
+pony==0.7.6
+Flask==1.0.2
+Flask-Login==0.4.1
+PyJWT==1.6.4
+flake8==3.5.0
+bcrypt==3.1.4
+psycopg2-binary==2.7.5
+Flask-Caching
+flask-restful==0.3.6
+marshmallow==2.15.6
+redis==2.10.6
+ml-metrics==0.1.4
+numpy==1.15.2
+python-dotenv==0.9.1
